@@ -46,22 +46,7 @@ Our source code can be found
 
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
-    As shown in the system flowchart, we use one of the CC3200 boards for
-    the closed feedback loop for maintaining concentration in the
-    environment. The board will read values with I2C protocol through an ADC
-    which reads values from the thermistor and the TDS meter sensor. The
-    board will also periodically read user-defined thresholds from the AWS
-    cloud using RESTful APIs. When the sensory values read outside of the
-    user-defined thresholds, the board will activate the motor control
-    function to pump either water or nutrient solution to bring the
-    concentration back within the thresholds. Meanwhile, another CC3200
-    board is frequently reading from the AWS cloud to present the current
-    TDS reading and user-defined threshold to the user on an OLED through
-    SPI protocols. To adjust the thresholds, the user can either do it
-    remotely or locally by using a TV remote to type the number into the IR
-    receiver. The adjustments will be updated to the AWS and if the user
-    updates remotely, the local CC3200 board will update the values in the
-    next synchronization.
+    SPADE-Spotify-Powered-AI-DJ-Experience
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
     <div class="fig">
