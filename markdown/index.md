@@ -1,29 +1,15 @@
 ---
-title: 'NutriSense: Automated Hydroponics Dosing System'
-author: '**Kushagra Tiwari and Shengmin Liu** (website template by Ryan Tsang)'
-date: '*EEC172 WQ24*'
+title: 'SPADE: Spotify Powered AI DJ Experience
+author: 'Sayan Bhatia & Dhilan Patel'
+date: '*EEC172 SQ24*'
 
-subtitle: '<blockquote><b>EEC172 Final Project Webpage Example</b><br/>
-Note to current students: this is an <i>example</i> webpage and
-may not fulfill all stated requirements of the current quarter''s 
-assignment.<br/>The website source is hosted 
-<a href="https://github.com/ucd-eec172/project-website-example">on github</a>.
-</blockquote>'
 
 toc-title: 'Table of Contents'
 abstract-title: '<h2>Description</h2>'
-abstract: 'Hydroponics is a technique where plants are grown in a nutrient-rich
-solution. This soil- free technique has been gaining traction recently
-due to its ability to optimize resource utilization. However, since
-plants are highly sensitive to changes in TDS, hydroponic setups require
-continuous TDS monitoring and adjustment. NutriSense, our device, allows
-hobbyists to achieve ideal hydroponics results on a small scale. It
-continuously monitors TDS and temperature, allowing the user to remotely
-read the status over AWS IoT cloud. The user can remotely enter upper
-and lower thresholds for TDS, and the device will automatically add
-nutrient solution or water to keep the TDS bounded by the thresholds.
-The device can also be configured to send notifications over SNS when
-the TDS value goes outside thresholds.
+abstract: 'Alexa is often used to play music in the household. However, only newer Alexa’s are accompanied by a visual screen. Our project attempts to solve this problem.
+Alexa is also not powered by today’s state of the art large language models and we allow for a cohesive DJ experience using GPT-4. 
+We created an AI powered spotify system that can change what the user is listening to, poll chatGPT for more information about the song, speak said information over Alexa, and display all of the song information and user status on an OLED.
+
 <br/><br/>
 Our source code can be found 
 <!-- replace this link -->
@@ -53,45 +39,6 @@ Our source code can be found
 <!-- EDIT METADATA ABOVE FOR CONTENTS TO APPEAR ABOVE THE TABLE OF CONTENTS -->
 <!-- ALL CONTENT THAT FOLLWOWS WILL APPEAR IN AND AFTER THE TABLE OF CONTENTS -->
 
-# Market Survey
-
-There are two types of similar product on the market. The first one is
-products from AeroGarden. Their products allow users to grow plants in
-nutrient solutions in a limited amount of usually 5 to 10. Compared with
-this product, our product provides an automated system for nutrient
-control that ensures the plant always has the correct amount of
-nutrients needed to avoid excess or insufficient nutrients. The other
-product is an expensive commercial system for horticulture aiming for a
-large scale of growth. Compared with this one, our product has the
-advantage of being cheap and small-scale which is more suitable for
-individual hobbyists to explore hydroponics.
-
-<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
-  <div style='display: inline-block; vertical-align: top;'>
-    <img src="./media/Image_003.jpg" style="width:auto;height:200"/>
-    <span class="caption">
-      <a href="https://aerogarden.com/gardens/harvest-family/Harvest-2.0.html">AeroGarden Harvest 2.0</a>
-      <ul style="text-align:left;">
-      <li>Inexpensive ($90)</li>
-      <li>Not Automated</li>
-      <li>Small Scale</li>
-      <li>No remote monitoring</li>
-    </ul>
-    </span>
-  </div>
-  <div style='display: inline-block; vertical-align: top;'>
-    <img src="./media/Image_004.jpg" style="width:auto;height:200" />
-    <span class="caption">
-      <a href="https://www.hydroexperts.com.au/Autogrow-MultiGrow-Controller-All-In-One-Controller-8-Growing-Zones">Autogrow Multigrow</a>
-      <ul style="text-align:left;">
-      <li>Expensive ($4500)</li>
-      <li>Fully Automated</li>
-      <li>Huge Scale</li>
-      <li>Cloud monitoring</li>
-    </ul>
-    </span>
-  </div>
-</div>
 
 # Design
 
