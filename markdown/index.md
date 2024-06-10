@@ -1,5 +1,5 @@
 ---
-title: 'SPADE: Spotify Powered AI DJ Experience
+title: 'SPADE: Spotify Powered AI DJ Experience'
 author: 'Sayan Bhatia & Dhilan Patel'
 date: '*EEC172 SQ24*'
 
@@ -46,7 +46,7 @@ Our source code can be found
 
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
-    SPADE-Spotify-Powered-AI-DJ-Experience
+    SPADE-Spotify-Powered-AI-DJ-Experience Dhilan
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
     <div class="fig">

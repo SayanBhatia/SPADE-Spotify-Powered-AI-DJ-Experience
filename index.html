@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Kushagra Tiwari and Shengmin Liu (website template by Ryan Tsang)" />
-  <title>NutriSense: Automated Hydroponics Dosing System</title>
+  <meta name="author" content="Sayan Bhatia &amp; Dhilan Patel" />
+  <title>SPADE: Spotify Powered AI DJ Experience</title>
   <!-- <link rel="stylesheet" type="text/css" href="assets/github-markdown-light.css" /> -->
   <link rel="stylesheet" href="assets/github-markdown-light.css" />
   <link rel="stylesheet" href="assets/style-customization.css" />
@@ -15,26 +15,20 @@
 </head>
 <article class="markdown-body">
 <header id="title-block-header">
-<h1 class="title">NutriSense: Automated Hydroponics Dosing System</h1>
-<p class="subtitle"><blockquote><b>EEC172 Final Project Webpage Example</b><br/> Note to current students: this is an <i>example</i> webpage and may not fulfill all stated requirements of the current quarter's assignment.<br/>The website source is hosted <a href="https://github.com/ucd-eec172/project-website-example">on github</a>. </blockquote></p>
-<p class="author"><strong>Kushagra Tiwari and Shengmin Liu</strong>
-(website template by Ryan Tsang)</p>
-<p class="date"><em>EEC172 WQ24</em></p>
+<h1 class="title">SPADE: Spotify Powered AI DJ Experience</h1>
+<p class="author">Sayan Bhatia &amp; Dhilan Patel</p>
+<p class="date"><em>EEC172 SQ24</em></p>
 <div class="abstract">
 <div class="abstract-title"><h2>Description</h2></div>
-Hydroponics is a technique where plants are grown in a nutrient-rich
-solution. This soil- free technique has been gaining traction recently
-due to its ability to optimize resource utilization. However, since
-plants are highly sensitive to changes in TDS, hydroponic setups require
-continuous TDS monitoring and adjustment. NutriSense, our device, allows
-hobbyists to achieve ideal hydroponics results on a small scale. It
-continuously monitors TDS and temperature, allowing the user to remotely
-read the status over AWS IoT cloud. The user can remotely enter upper
-and lower thresholds for TDS, and the device will automatically add
-nutrient solution or water to keep the TDS bounded by the thresholds.
-The device can also be configured to send notifications over SNS when
-the TDS value goes outside thresholds. <br/><br/> Our source code can be
-found <!-- replace this link -->
+Alexa is often used to play music in the household. However, only newer
+Alexa’s are accompanied by a visual screen. Our project attempts to
+solve this problem. Alexa is also not powered by today’s state of the
+art large language models and we allow for a cohesive DJ experience
+using GPT-4. We created an AI powered spotify system that can change
+what the user is listening to, poll chatGPT for more information about
+the song, speak said information over Alexa, and display all of the song
+information and user status on an OLED. <br/><br/> Our source code can
+be found <!-- replace this link -->
 <a href="https://github.com/ucd-eec172/project-website-example"> here
 (placeholder)</a>.<br />
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./media/Image_001.jpg" style="width:auto;height:2in"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./media/Image_002.jpg" style="width:auto;height:2in" /> <!-- <span class="caption"> </span> --> </div> </div>
@@ -44,8 +38,6 @@ found <!-- replace this link -->
 <nav id="TOC" role="doc-toc">
 <h2 id="toc-title">Table of Contents</h2>
 <ul>
-<li><a href="#market-survey" id="toc-market-survey">Market
-Survey</a></li>
 <li><a href="#design" id="toc-design">Design</a>
 <ul>
 <li><a href="#system-architecture" id="toc-system-architecture">System
@@ -97,64 +89,11 @@ BOM</a></li>
 
 <!-- ALL CONTENT THAT FOLLWOWS WILL APPEAR IN AND AFTER THE TABLE OF CONTENTS -->
 
-<h1 id="market-survey">Market Survey</h1>
-<p>There are two types of similar product on the market. The first one
-is products from AeroGarden. Their products allow users to grow plants
-in nutrient solutions in a limited amount of usually 5 to 10. Compared
-with this product, our product provides an automated system for nutrient
-control that ensures the plant always has the correct amount of
-nutrients needed to avoid excess or insufficient nutrients. The other
-product is an expensive commercial system for horticulture aiming for a
-large scale of growth. Compared with this one, our product has the
-advantage of being cheap and small-scale which is more suitable for
-individual hobbyists to explore hydroponics.</p>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
-  <div style='display: inline-block; vertical-align: top;'>
-    <img src="./media/Image_003.jpg" style="width:auto;height:200"/>
-    <span class="caption">
-      <a href="https://aerogarden.com/gardens/harvest-family/Harvest-2.0.html">AeroGarden Harvest 2.0</a>
-      <ul style="text-align:left;">
-      <li>Inexpensive ($90)</li>
-      <li>Not Automated</li>
-      <li>Small Scale</li>
-      <li>No remote monitoring</li>
-    </ul>
-    </span>
-  </div>
-  <div style='display: inline-block; vertical-align: top;'>
-    <img src="./media/Image_004.jpg" style="width:auto;height:200" />
-    <span class="caption">
-      <a href="https://www.hydroexperts.com.au/Autogrow-MultiGrow-Controller-All-In-One-Controller-8-Growing-Zones">Autogrow Multigrow</a>
-      <ul style="text-align:left;">
-      <li>Expensive ($4500)</li>
-      <li>Fully Automated</li>
-      <li>Huge Scale</li>
-      <li>Cloud monitoring</li>
-    </ul>
-    </span>
-  </div>
-</div>
-
 <h1 id="design">Design</h1>
 <h2 id="system-architecture">System Architecture</h2>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
-    As shown in the system flowchart, we use one of the CC3200 boards for
-    the closed feedback loop for maintaining concentration in the
-    environment. The board will read values with I2C protocol through an ADC
-    which reads values from the thermistor and the TDS meter sensor. The
-    board will also periodically read user-defined thresholds from the AWS
-    cloud using RESTful APIs. When the sensory values read outside of the
-    user-defined thresholds, the board will activate the motor control
-    function to pump either water or nutrient solution to bring the
-    concentration back within the thresholds. Meanwhile, another CC3200
-    board is frequently reading from the AWS cloud to present the current
-    TDS reading and user-defined threshold to the user on an OLED through
-    SPI protocols. To adjust the thresholds, the user can either do it
-    remotely or locally by using a TV remote to type the number into the IR
-    receiver. The adjustments will be updated to the AWS and if the user
-    updates remotely, the local CC3200 board will update the values in the
-    next synchronization.
+    SPADE-Spotify-Powered-AI-DJ-Experience Dhilan
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
     <div class="fig">
