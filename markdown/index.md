@@ -1,5 +1,6 @@
 ---
 title: 'SPADE: Spotify Powered AI DJ Experience'
+title: 'SPADE: Spotify Powered AI DJ Experience'
 author: 'Sayan Bhatia & Dhilan Patel'
 date: '*EEC172 SQ24*'
 
