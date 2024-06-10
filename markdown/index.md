@@ -87,7 +87,7 @@ If the IR remote is used, the system differentiates between AWS and UART command
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 500px">
     <div class="fig">
-      <img src="./media/FSM_hardware.png" style="width:90%;height:auto;" />
+      <img src="media/FSM_hardware.png" style="width:90%;height:auto;" />
       <span class="caption">Hardware State Diagram</span>
     </div>
   </div>
