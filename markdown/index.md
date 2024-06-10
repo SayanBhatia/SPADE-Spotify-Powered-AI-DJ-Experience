@@ -57,7 +57,7 @@ Here is how each component plays a role in the software architecture:
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 600px;">
     <div class="fig">
-      <img src="/media/software_architecture.png" style="width:100%;height:100%;" />
+      <img src="media/software_architecture.png" style="width:100%;height:100%;" />
     </div>
   </div>
 </div>
@@ -71,7 +71,7 @@ Here is how each component plays a role in the software architecture:
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 600px;">
     <div class="fig">
-      <img src="/media/hardware_architecture.png" style="width:100%;height:100%;" />
+      <img src="media/hardware_architecture.png" style="width:100%;height:100%;" />
     </div>
   </div>
 </div>
@@ -111,7 +111,7 @@ Making requests to ChatGPT and Alexa was a simple POST request with the songInfo
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
-      <img src="/media/step_function.png" style="width:auto;height:auto" />
+      <img src="media/step_function.png" style="width:auto;height:auto" />
       <span class="caption">AWS Step Function FSM</span>
     </div>
   </div>
