@@ -25,14 +25,10 @@ Alexa’s are accompanied by a visual screen. Our project attempts to
 solve this problem. Alexa is also not powered by today’s state of the
 art large language models and we allow for a cohesive DJ experience
 using GPT-4. We created an AI powered spotify system that can change
-what the user is listening to, poll chatGPT for more information about
+what the user is listening to, poll ChatGPT for more information about
 the song, speak said information over Alexa, and display all of the song
-information and user status on an OLED. <br/><br/> Our source code can
-be found <!-- replace this link -->
-<a href="https://github.com/ucd-eec172/project-website-example"> here
-(placeholder)</a>.<br />
-<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./media/Image_001.jpg" style="width:auto;height:2in"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./media/Image_002.jpg" style="width:auto;height:2in" /> <!-- <span class="caption"> </span> --> </div> </div>
-<h2>Video Demo</h2> <div style="text-align:center;margin:auto;max-width:560px"> <div style="padding-bottom:56.25%;position:relative;height:0;"> <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/wSRtnAEZhmc?si=3vQXNj4h0WkW-F-q" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div> </div> 
+information and user status on an OLED. <br/><br/><br />
+<h2>Video Demo</h2> <div style="text-align:center;margin:auto;max-width:560px"> <div style="padding-bottom:56.25%;position:relative;height:0;"> <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/BOhCVAxeftI?si=R8y37Bqj9OpNV9br" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div> </div> 
 </div>
 </header>
 <nav id="TOC" role="doc-toc">
@@ -41,64 +37,80 @@ be found <!-- replace this link -->
 <li><a href="#design" id="toc-design">Design</a>
 <ul>
 <li><a href="#system-architecture" id="toc-system-architecture">System
-Architecture</a></li>
+Architecture</a>
+<ul>
+<li><a href="#software-architecture"
+id="toc-software-architecture">Software Architecture</a></li>
+</ul></li>
+<li><a href="#hardware-architecture"
+id="toc-hardware-architecture">Hardware Architecture</a></li>
 <li><a href="#functional-specification"
 id="toc-functional-specification">Functional Specification</a></li>
 </ul></li>
 <li><a href="#implementation" id="toc-implementation">Implementation</a>
 <ul>
-<li><a href="#cc3200-launchxl-evaluation-board"
-id="toc-cc3200-launchxl-evaluation-board">CC3200-LAUNCHXL Evaluation
-Board</a></li>
-<li><a href="#functional-blocks-master"
-id="toc-functional-blocks-master">Functional Blocks: Master</a>
-<ul>
-<li><a href="#aws-iot-core" id="toc-aws-iot-core">AWS IoT Core</a></li>
-<li><a href="#oled-display" id="toc-oled-display">OLED Display</a></li>
-<li><a href="#ir-receiver" id="toc-ir-receiver">IR Receiver</a></li>
+<li><a href="#software" id="toc-software">Software</a></li>
+<li><a href="#hardware" id="toc-hardware">Hardware</a></li>
 </ul></li>
-<li><a href="#functional-blocks-slave"
-id="toc-functional-blocks-slave">Functional Blocks: Slave</a>
-<ul>
-<li><a href="#analog-to-digital-converter-adc-board"
-id="toc-analog-to-digital-converter-adc-board">Analog-To-Digital
-Converter (ADC) Board</a></li>
-<li><a href="#thermistor" id="toc-thermistor">Thermistor</a></li>
-<li><a href="#tds-sensor-board" id="toc-tds-sensor-board">TDS Sensor
-Board</a></li>
-<li><a href="#pumps-and-control-circuit"
-id="toc-pumps-and-control-circuit">Pumps and Control Circuit</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#challenges" id="toc-challenges">Challenges</a>
-<ul>
-<li><a href="#probe-channel-polarization"
-id="toc-probe-channel-polarization">Probe Channel Polarization</a></li>
-<li><a href="#current-limitation-of-gpio-pins"
-id="toc-current-limitation-of-gpio-pins">Current Limitation of GPIO
-Pins</a></li>
-<li><a href="#solution-to-challenges"
-id="toc-solution-to-challenges">Solution to Challenges</a></li>
-</ul></li>
+<li><a href="#challenges" id="toc-challenges">Challenges</a></li>
 <li><a href="#future-work" id="toc-future-work">Future Work</a></li>
-<li><a href="#finalized-bom" id="toc-finalized-bom">Finalized
-BOM</a></li>
+<li><a href="#finalized-bill-of-materials"
+id="toc-finalized-bill-of-materials">Finalized Bill of
+Materials</a></li>
 </ul>
 </nav>
-<!-- EDIT METADATA ABOVE FOR CONTENTS TO APPEAR ABOVE THE TABLE OF CONTENTS -->
-
-<!-- ALL CONTENT THAT FOLLWOWS WILL APPEAR IN AND AFTER THE TABLE OF CONTENTS -->
-
 <h1 id="design">Design</h1>
 <h2 id="system-architecture">System Architecture</h2>
+<h3 id="software-architecture">Software Architecture</h3>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
-    SPADE-Spotify-Powered-AI-DJ-Experience Dhilan
+    For the software component, we had two primary functions, 
+Receive new data (modify playback, ex. seek, skip, pause) from the CC3200 
+Process this data to execute certain actions crucial to the overall integration and product experience (AI commentary played through Alexa, and the song playback modified)
+
+<p>Here is how each component plays a role in the software
+architecture:</p>
+<ul>
+<li><p>AWS Lambda: The central data processing component that ran all
+API-code in the cloud. Our whole Lambda function executed several
+actions in this order:</p>
+<ul>
+<li>Receive modify playback data from AWS IotCore and the shadow for our
+IoT Thing</li>
+<li>Constantly retrieve the current playing song from Spotify API</li>
+<li>Modify playback based on retrieved data from Shadow</li>
+<li>Send current playing song to GPT-4, a LLM hosted by OpenAI, asking
+for an interesting fact that intrigues the user</li>
+<li>Receive commentary from GPT-4 and send commentary to Alexa to
+play</li>
+</ul></li>
+<li><p>AWS IotCore Shadow: Used to retrieve new updates and data from
+our CC3200</p></li>
+<li><p>Spotify API - The service we used to control the song and
+playback connected to our Spotify Account</p></li>
+<li><p>ChatGPT API - Used to generate ‘DJ Commentary’ for the current
+song. This commentary is later played by Alexa as a medium to give the
+information to the user</p></li>
+<li><p>Alexa Voice Third-Party API - A Text-To-Speech service that
+allows us to send text and play it on the Alexa</p></li>
+</ul>
   </div>
-  <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
+  <div style="display:inline-block;vertical-align:top;flex:0 0 600px;">
     <div class="fig">
-      <img src="./media/Image_005.jpg" style="width:90%;height:auto;" />
-      <span class="caption">System Flowchart</span>
+      <img src="/media/software_architecture.png" style="width:100%;height:100%;" />
+    </div>
+  </div>
+</div>
+
+<h2 id="hardware-architecture">Hardware Architecture</h2>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
+  <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
+    The IR Sensor and remote is for the user to wirelessly send commands to the DJ, such as changing the song and displaying information on the OLED. The Pushbutton is used to change stylistic settings of the system, such as the font layout and color. The 802.11 Wifi module connects with AWS to receive all of the Spotify song information, as well as change the user’s information when they want to change what they are playing through the DJ system. The OLED Display shows all of the song information as well as some graphics for the user’s song statuses. The Secondary display/Device is another peripheral that shows all of the sentences generated by chatGPT. The CC3200 brings all of these peripherals together and does the main processing to determine what actions to take, as well as how to communicate with these separate systems.
+
+  </div>
+  <div style="display:inline-block;vertical-align:top;flex:0 0 600px;">
+    <div class="fig">
+      <img src="/media/hardware_architecture.png" style="width:100%;height:100%;" />
     </div>
   </div>
 </div>
@@ -106,229 +118,198 @@ BOM</a></li>
 <h2 id="functional-specification">Functional Specification</h2>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 300px;">
-    Our system works based on the following state diagram. The device will
-    periodically monitor the temperature and the electrical conductivity
-    (EC) of the solution and convert the values into a TDS value using a
-    calibration curve. At the same time, the device will check for threshold
-    inputs, both over the AWS shadow and via manual input on the IR
-    receiver. It will compare the TDS with the lower and upper thresholds
-    set by the user. If the value is within the thresholds, it will stay in
-    the rest state. If the TDS is higher than the upper thresholds, it will
-    go to the water state and activate the water pump until the PPM is lower
-    than the upper thresholds and go back to the rest state. If the PPM is
-    lower than the lower thresholds, it will go to the nutrient state and
-    activate the nutrient pump until the PPM is higher than the lower
-    thresholds and go back to the rest state. In each state, the device will
-    periodically post the TDS.
+
+<p>Our product is designed to manage and display song information on an
+OLED display, utilizing various input methods and commands to update or
+change the displayed information. When the system starts, it initiates a
+waiting period of 5 seconds to stabilize before checking for any input.
+After this waiting period, the system checks if the push button is
+pressed. If the button is pressed, the system changes the format and
+color of the display and updates it accordingly. If the button is not
+pressed, the system then checks for inputs from an IR remote.</p>
+<p>If the IR remote is used, the system differentiates between AWS and
+UART commands. For an AWS command, the system sends a prompt to AWS to
+perform a song change. For a UART command, the system sends the
+information via a UART wire. If the IR remote is not used, the system
+proceeds to retrieve song information from AWS. Once the song
+information is retrieved, the system checks if there is new song
+information available. If there is new song information, the system
+updates the display with the new song title, album, and artist. If there
+is no new song information, the system loops back to the start
+state.</p>
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 500px">
     <div class="fig">
-      <img src="./media/Image_006.jpg" style="width:90%;height:auto;" />
-      <span class="caption">State Diagram</span>
+      <img src="/media/FSM_hardware.png" style="width:90%;height:auto;" />
+      <span class="caption">Hardware State Diagram</span>
     </div>
   </div>
 </div>
 
 <h1 id="implementation">Implementation</h1>
-<h3 id="cc3200-launchxl-evaluation-board">CC3200-LAUNCHXL Evaluation
-Board</h3>
-<p>All control and logic was handled by two CC3200 microcontroller
-units, one each for the Master and Slave device. On the master device,
-it was responsible for decoding IR inputs from the remote to allow the
-user to input thresholds to be sent over AWS. The board’s SPI
-functionality, using the TI SPI library, was used to interface with the
-OLED display. The MCU is WiFi enabled, allowing a remote connection
-between the two boards.</p>
-<p>On the slave device, the microcontroller was responsible for the same
-functionalities as above, in addition to the TDS reading and control.
-This includes interfacing with the ADC over the I2C bus, reading
-thresholds over HTTP from the AWS device shadow, writing the reported
-TDS to the device shadow, and activating the two pumps using the BJT
-control circuit.</p>
-<h2 id="functional-blocks-master">Functional Blocks: Master</h2>
-<h3 id="aws-iot-core">AWS IoT Core</h3>
+<h3 id="software">Software</h3>
+<p>To ‘invoke’ our Lambda function we used AWS StepFunctions which
+allowed us to constantly run our Lambda function every 10 seconds to
+retrieve current playing song info and data updates from AWS Iot Core.
+The Finite State Machine Diagram above displays the step function
+utility which essentially invoked Lambda, waits 10 seconds, and runs
+again. Our FSM times out after 20 minutes to minimize spending and cloud
+resource usage.</p>
+<p>To authenticate with Spotify, we had to follow the Authentication
+Flow specified by Spotify. This requires us to do the following:</p>
+<ul>
+<li>Authenticate to get an access code and refresh token</li>
+<li>Use the refresh token in our environmental variables and retrieve an
+access token with appropriate permissions, specifically:
+user-read-playback-state, user-modify-playback-state.</li>
+<li>Use the access token to modify and read playback from our Spotify
+Account</li>
+</ul>
+<p>To GET and POST data to the shadow in AWS IotCore we used boto3 to
+establish a connection to the client and sent information or received
+information while specifying the name and region of our ‘thing’. When
+modifying playback we would read from the shadow whether, ‘seek’,
+‘skip’, or ‘pause’ were True. The state that was true was then relayed
+to spotify to modify the playback accordingly.</p>
+<p>Making requests to ChatGPT and Alexa was a simple POST request with
+the songInfo and commentary respectively. We package the requests
+library and added as a layer to our lambda function to make API requests
+to these APIs. When making a request to GPT-4 we would package the song
+name, album name, and artists names received from Spotify into a neat
+string with a prompt asking for an interesting fact.</p>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
-    The AWS IoT core allows our devices to communicate with each other
-    asynchronously. The master device can update the desired thresholds, and
-    the slave device will read them and synchronize them to the reported
-    state. The slave device will also post the TDS and temperature readings
-    periodically.
-  </div>
   <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
     <div class="fig">
-      <img src="./media/Image_007.jpg" style="width:auto;height:2.5in" />
-      <span class="caption">Device Shadow JSON</span>
+      <img src="/media/step_function.png" style="width:auto;height:auto" />
+      <span class="caption">AWS Step Function FSM</span>
     </div>
   </div>
 </div>
 
-<h3 id="oled-display">OLED Display</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    On both Master and Slave devices, the user can view the current TDS and
-    temperature of the plant solution on an OLED display. The user can also
-    use the display to view and edit the TDS thresholds. The CC3200 uses the
-    SPI bus to communicate with the display module.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_008.jpg" style="width:auto;height:2in" />
-      <span class="caption">OLED Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="ir-receiver">IR Receiver</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    On both the Master and Slave devices, a user can input the TDS
-    thresholds using a TV remote. These TV remotes use the NEC code format
-    with a carrier frequency of 38KHz. The Vishay IR receiver is connected
-    to Pin 62 of the CC3200, which is configured as a GPIO input pin. Each
-    positive edge of the signal triggers an interrupt in the main program,
-    storing the pulse distances into a buffer, and allowing us to decode the
-    inputs (1-9, delete and enter). The IR receiver is connected to VCC
-    through a resistor and a capacitor to filter any ripples.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_009.jpg" style="width:auto;height:2in" />
-      <span class="caption">IR Receiver Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h2 id="functional-blocks-slave">Functional Blocks: Slave</h2>
-<p>The slave device contains all the functional blocks from the master
-device, plus the following:</p>
-<h3 id="analog-to-digital-converter-adc-board">Analog-To-Digital
-Converter (ADC) Board</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    The outputs from the thermistor and TDS sensor board are
-    in the form of analog voltages, which need to be converted to digital
-    values to be usable in our program. We chose the AD1015 breakout board
-    from Adafruit, which sports 4-channels and 12 bits of precision. We
-    ended up using only 2 channels, so there is a potential for even more
-    cost savings. The ADC board supports I2C communication, which we can use
-    to request and read the two channel voltages. 
-    The <a href="https://cdn-shop.adafruit.com/datasheets/ads1015.pdf">
-    product datasheet</a> contains the necessary configuration values
-    and register addresses for operation.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_010.jpg" style="width:auto;height:2in" />
-      <span class="caption">ADC Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="thermistor">Thermistor</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 300px;'>
-    Conductivity-based TDS measurements are sensitive to temperature. To
-    allow accurate TDS measurements in a variety of climates and seasons,
-    temperature compensation calculations must be performed. To measure the
-    temperature, we use an NTC thermistor connected in a voltage divider
-    with a 10k resistor. The voltage across the resistor is read by the ADC
-    and converted to temperature using the equation provided by the
-    thermistor datasheet.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_011.jpg" style="width:auto;height:2in" />
-      <span class="caption">Thermistor Circuit Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="tds-sensor-board">TDS Sensor Board</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 500px'>
-    In our first attempt to measure TDS, we used a simple two-probe analog
-    setup with a voltage divider. We soon found out that this was a naïve
-    approach (see Challenges). Consequently, we acquired a specialty TDS
-    sensing board from CQRobot, which generates a sinusoidal pulse and
-    measures the voltage drop to give a highly precise voltage to the ADC.
-    The MCU can then convert this voltage to a TDS value using the equation
-    provided by the device datasheet. We calibrated the TDS readings using a
-    standalone TDS sensor pen. After calibration and setting up the curves
-    for temperature compensation, we were able to achieve TDS readings
-    accurate to within 5% of the TDS sensor pen.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 600px'>
-    <div class="fig">
-      <img src="./media/Image_012.jpg" style="width:auto;height:2in;padding-top:30px" />
-      <span class="caption">TDS Sensor Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="pumps-and-control-circuit">Pumps and Control Circuit</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 500px'>
-    The CC3200 is unable to provide sufficient power to drive the pumps,
-    which need 100mA of current each. Therefore, we used an external power
-    source in the form of 2 AA batteries for each pump motor. To allow the
-    CC3200 to turn on/off the motors, we designed a simple amplifier using a
-    Common Emitter topology. When the control pin is asserted HIGH, the BJT
-    will allow current to flow from 3V to ground through the pump motor.
-    Conversely, if the control signal is LOW, the BJT will not allow current
-    to flow in the motor. For each motor, there is a reverse-biased diode
-    connected across it. This protects our circuit from current generated by
-    the motor if it is spun from external force or inertia.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 600px'>
-    <div class="fig">
-      <img src="./media/Image_013.jpg" style="width:auto;height:2in;padding-top:30px" />
-      <span class="caption">Pump Circuit Diagrams</span>
-    </div>
-  </div>
-</div>
-
+<h3 id="hardware">Hardware</h3>
+<ul>
+<li><p><strong>IR Sensor and Remote</strong>:</p>
+<ul>
+<li>Hardwired the IR circuit to a GPIO pin on the microcontroller</li>
+<li>Used interrupts to decode the timing of the buttons on the
+remote</li>
+<li>Based on the timing characteristic, perform that respective command
+in the software in the GPIO input’s handler.</li>
+</ul></li>
+<li><p><strong>Pushbutton</strong>:</p>
+<ul>
+<li>Already soldered onto the microcontroller</li>
+<li>Used a software interrupt to determine when the button was
+pressed</li>
+<li>Whenever the button was pressed, cycled between several color and
+format characteristics of the display, implemented in the loop of the
+button’s handler.</li>
+</ul></li>
+<li><p><strong>802.11 Wifi Module</strong>:</p>
+<ul>
+<li>Mostly implemented via software</li>
+<li>Connected to the local network on the program’s initialization</li>
+<li>Every 5 seconds, the module connects to AWS IOT to pull the song
+information from the shadow, then gives it to CC3200</li>
+<li>If the CC3200 has a command to send to AWS IOT, it prompts the wifi
+module to send that information over to update the shadow.</li>
+</ul></li>
+<li><p><strong>OLED Display</strong>:</p>
+<ul>
+<li>CC3200 updates the display every 5 seconds if there is new
+information to be processed</li>
+<li>Uses SPI to send pixel information regarding various icons (pause,
+play, loop) and character data for the song title</li>
+</ul></li>
+<li><p><strong>Secondary Display/Device</strong>:</p>
+<ul>
+<li>UART connection via output pin that can be connected to another
+device</li>
+<li>In our case, we used a second CC3200 to take the information in and
+display it on another OLED. However, this wire can go to any device that
+can process UART as an input</li>
+<li>Whenever a command is sent from the main CC3200, it takes a string
+representing the paragraph to be sent, and sends it over UART protocol
+to a receiving device.</li>
+</ul></li>
+<li><p><strong>CC3200</strong>:</p>
+<ul>
+<li>Processes all of the tasks to be done from the peripherals, connects
+their interactions together</li>
+<li>When the GPT button is pressed on the remote, prepare and send the
+paragraph over UART</li>
+<li>When buttons 1-4 are pressed, upload that specific command to AWS to
+update Spotify data</li>
+<li>Sets up the 5-second intervals to retrieve new data</li>
+<li>When a new song is detected, update the OLED display via SPI</li>
+<li>When the pushbutton is pressed, interrupt the current task to update
+the font and format.</li>
+</ul></li>
+</ul>
 <h1 id="challenges">Challenges</h1>
-<p>The most significant challenge we faced while developing this
-prototype was of inaccurate and inconsistent Electrical Conductivity
-(EC) measurements. This occurred due to two reasons: probe channel
-polarization and current limitations of GPIO pins.</p>
-<h2 id="probe-channel-polarization">Probe Channel Polarization</h2>
-<p>Our first design for the probe was simply two copper rods, which
-would add as electrodes. This probe would be connected in series with a
-1000-ohm resistor to act as a voltage divider. We would simply connect
-the probe to VCC and measure the voltage divider through the ADC,
-allowing us to calculate the EC. However, when we used the probe for a
-few minutes, we realized that the EC value would continue to rise. This
-is because the DC current causes an ionized channel to build up between
-the two electrodes in the water. This cause inconsistent EC readings as
-time goes on.</p>
-<h2 id="current-limitation-of-gpio-pins">Current Limitation of GPIO
-Pins</h2>
-<p>Our next idea was to try using the GPIO pins to power the probe,
-since we can turn it off when not needed, preventing excessive
-polarization. However, the GPIO pins are current limited, and any
-control circuit with a transistor would introduce extra voltage drops.
-Therefore, the simple two-probe implementation was not feasible.</p>
-<h2 id="solution-to-challenges">Solution to Challenges</h2>
-<p>We realized that using DC current to measure EC was not feasible.
-Therefore, we purchased a standalone EC measurement board from CQRobot.
-This inexpensive solution ($8) used a low-voltage, low-current AC signal
-to prevent polarization. The board would convert the AC voltage drop
-across the solution to a DC analog voltage, which would then be read by
-our ADC. After calibrating the setup using a commercial TDS pen, the
-results were accurate within 3%, and would not drift by more than 0.5%
-over time.</p>
+<p>The main challenge we had to deal with was getting the commands to
+interact with the AWS IOT. We were able to push information to the IOT
+fine, but it was hard to parse what we were getting in order to
+determine the information on the song. For some reason, we could not
+access a value in a specific variable, but we could access the whole
+directory in the IOT. So, we solved this problem by accessing every
+value at once, and starting to read the information into a variable (for
+instance, the song title was the first variable and was always the 257th
+character in the string) character by character until a certain
+identifier was encountered. Once that identifier was encountered, we
+skipped a certain number of characters and moved on to reading for the
+next variable (ex. artist name) until another identifier was found. Once
+we read the last variable needed, we just threw away the rest of the
+string. We did not have this issue with writing variables for some
+reason, it was just with reading.</p>
+<p>We also had issues with wiring all of the peripherals together, as we
+ran into conflicts with the allowed pins in our Pin mux configuration.
+It took us a while to try different pins for each peripheral, UART, and
+SPI until we got everything to work together.</p>
+<p>Another challenge we ran into was figuring out how to display the
+spotify image data onto the OLED. We wanted to make a second menu which
+exclusively displayed such images, as the adafruit library on arduino
+can display image files sent to it. This proved to be a challenge
+however, as we had to take the base64 encoded image, convert it into 3
+separate RGB bitmaps, and then write a function that can identify the
+bitmaps to produce a color intensity on each pixel. We gave up on this
+implementation because it would have detracted from our other
+functionalities, and we may have not been able to even finish it with
+the given time.</p>
+<p>With regards to software we had a couple main hurdles that were
+eventually overcome. First, authenticating with Spotify turned out to be
+less intuitive than we expected. When authenticating with Spotify,
+Spotify typically expects the user to authenticate and allow ‘access’
+for the Third-Party to access their account data via the web and a
+frontend. Since this was not possible, it made it hard to find a way to
+authenticate and retrieve both the access code and refresh token. We
+eventually found a way to manually authenticate ahead of time which
+involved using a frontend with a callback URL to return back to our
+code. From here we received the access code and refresh token which we
+used in our code.</p>
+<p>Another challenge we encountered was sending the AI commentary to
+Alexa. Alexa does not allow text-to-speech through any official API.
+Since we were doing our analysis with a state of the art LLM not present
+in Alexa at the moment, we had to find a way to send our own generated
+commentary to Alexa. To accomplish this we used a third party voice
+plugin which connected to our Alexa account to play text. This was
+mostly handled by the enabling of this plugin except for a POST request
+written in our code made to the plugin itself with the commentary.</p>
 <h1 id="future-work">Future Work</h1>
-<p>Given more time, we had the idea of developing a web app to allow
-users to control the device from their cell phone. Another idea we
-wanted to implement in the future is adding a grow light and pH
-controller to maintain a more suitable and stable environment for
-different plants to grow.</p>
-<h1 id="finalized-bom">Finalized BOM</h1>
-<!-- you can convert google sheet cells to html for free using a converter
-  like https://tabletomarkdown.com/convert-spreadsheet-to-html/ -->
-
+<p>The first thing we would like to get done in the future is being able
+to periodically refresh the album cover on the OLED display. This was
+hard for us to achieve within the deadline, as we would have done it if
+we had extra time.</p>
+<p>The second thing we wanted to work on was implementing an ultrasound
+sensor to periodically pause and play the song on Spotify. The idea was
+for the user to hold their hand out in front of the DJ as if telling it
+to wait, and AWS would keep the song paused as long as their hand was up
+there. Once the hand moved, the song would resume.</p>
+<p>Another feature we would like to work on is getting the information
+to display on a larger display. This would have been a higher priority
+if we got the album covers to display since 128x128 does not show enough
+detail on most artist’s covers.</p>
+<h1 id="finalized-bill-of-materials">Finalized Bill of Materials</h1>
 <table style="border-collapse:collapse;">
 <thead>
   <tr>
@@ -345,182 +326,83 @@ different plants to grow.</p>
 <tbody>
   <tr>
     <td><p>1</p></td>
-    <td><p>CC3200-LAUNCHXL</p></td>
-    <td><p>MCU Evaluation Board</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$66.00</p></td>
-    <td><p>$132.00</p></td>
-    <td><p>Control Remote and Local Devices</p></td>
+    <td><p>TI CC3200</p></td>
+    <td><p>MCU, for processing tasks and connecting peripherals</p></td>
+    <td><p>1-2</p></td>
+    <td><p>TI</p></td>
+    <td><p>$65 - $70</p></td>
+    <td><p>$65 - $140</p></td>
+    <td><p>Control Remote and Local Devices, process UART information</p></td>
   </tr>
   <tr>
     <td><p>2</p></td>
-    <td><p>Adafruit 1431 OLED</p></td>
-    <td><p>128x128 RGB OLED Display. SPI protocol</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$39.95</p></td>
-    <td><p>$79.90</p></td>
-    <td><p>Display PPM, Temperature, Thresholds, Inputs</p></td>
+    <td><p>OLED Display</p></td>
+    <td><p>128x128 RGB OLED Display, SPI protocol</p></td>
+    <td><p>1-2</p></td>
+    <td><p>Adafruit</p></td>
+    <td><p>$40.00</p></td>
+    <td><p>$40 - $80</p></td>
+    <td><p>Display information, including GPT data</p></td>
   </tr>
   <tr>
     <td><p>3</p></td>
-    <td><p>Adafruit 4547 3VDC Pump</p></td>
-    <td><p>Submersible pump. 3V 100mA DC</p></td>
-    <td><p>2</p></td>
-    <td><p>Adafruit</p></td>
-    <td><p>$2.95</p></td>
-    <td><p>$5.90</p></td>
-    <td><p>For dispensing water and nutrient solution</p></td>
-  </tr>
-  <tr>
-    <td><p>4</p></td>
-    <td><p>Adafruit 4545 6mm Tube</p></td>
-    <td><p>6mm Silicone Tube: 1 meter length</p></td>
+    <td><p>Remote</p></td>
+    <td><p>General-purpose remote control</p></td>
     <td><p>1</p></td>
-    <td><p>Adafruit</p></td>
-    <td><p>$1.50</p></td>
-    <td><p>$1.50</p></td>
-    <td><p>For dispensing water and nutrient solution</p></td>
-  </tr>
-  <tr>
-    <td><p>5</p></td>
-    <td><p>NTC Thermistor 10k</p></td>
-    <td><p>10k ohm nominal resistance, 100cm lead</p></td>
-    <td><p>1</p></td>
-    <td><p>(Already had one, available on Aliexpress)</p></td>
-    <td><p>$0.92</p></td>
-    <td><p>$0.92</p></td>
-    <td><p>For temperature compensation</p></td>
-  </tr>
-  <tr>
-    <td><p>6</p></td>
-    <td><p>Adafruit AD1015 12-bit ADC</p></td>
-    <td><p>12-bit resolution, 4 channels, I2C</p></td>
-    <td><p>1</p></td>
-    <td><p>Adafruit</p></td>
-    <td><p>$9.95</p></td>
-    <td><p>$9.95</p></td>
-    <td><p>To convert Thermistor and TDS sensor reading to digital</p></td>
-  </tr>
-  <tr>
-    <td><p>7</p></td>
-    <td><p>PN2222A Transistor</p></td>
-    <td><p>NPN BJT (40V, 1000mA)</p></td>
-    <td><p>2</p></td>
-    <td><p>Digikey (onSemi)</p></td>
-    <td><p>$0.40</p></td>
-    <td><p>$0.80</p></td>
-    <td><p>For digital motor control</p></td>
-  </tr>
-  <tr>
-    <td><p>8</p></td>
-    <td><p>1N4001 Rectifier Diode</p></td>
-    <td><p>Diffused junction: 50V 1000mA</p></td>
-    <td><p>2</p></td>
-    <td><p>Digikey (Good-Ark Semi)</p></td>
-    <td><p>$0.16</p></td>
-    <td><p>$0.32</p></td>
-    <td><p>Reverse Current Protection</p></td>
-  </tr>
-  <tr>
-    <td><p>9</p></td>
-    <td><p>10k ohm resistor</p></td>
-    <td><p>10k ohm , 1% tolerance, 0.25W</p></td>
-    <td><p>1</p></td>
-    <td><p>Digikey (Stackpole Electronics)</p></td>
-    <td><p>$0.10</p></td>
-    <td><p>$0.10</p></td>
-    <td><p>Voltage divider for Thermistor</p></td>
-  </tr>
-  <tr>
-    <td><p>10</p></td>
-    <td><p>Vishay TSOP31130 IR RCVR</p></td>
-    <td><p>30kHz carrier frequency</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$1.41</p></td>
-    <td><p>$2.82</p></td>
-    <td><p>Decode user inputs</p></td>
-  </tr>
-  <tr>
-    <td><p>11</p></td>
-    <td><p>330 ohm resistor</p></td>
-    <td><p>330 ohm resistor, &lt;5% tolerance, 3W</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$0.59</p></td>
-    <td><p>$1.18</p></td>
-    <td><p>Current Limit for IR Receiv er</p></td>
-  </tr>
-  <tr>
-    <td><p>12</p></td>
-    <td><p>ATT-RC1534801 Remote</p></td>
-    <td><p>General-purpose TV remote. IR NTC protocol</p></td>
-    <td><p>1</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$9.99</p></td>
-    <td><p>$9.99</p></td>
+    <td><p>Various</p></td>
+    <td><p>$43 - $47</p></td>
+    <td><p>$43 - $47</p></td>
     <td><p>Allow user inputs</p></td>
   </tr>
   <tr>
-    <td><p>13</p></td>
-    <td><p>CQRSENTDS01 TDS Sensor</p></td>
-    <td><p>Analog reading 0-2.3V. 0-1000ppm range</p></td>
+    <td><p>4</p></td>
+    <td><p>IR Transceiver</p></td>
+    <td><p>For IR communication</p></td>
     <td><p>1</p></td>
-    <td><p>CQRobot</p></td>
-    <td><p>$7.99</p></td>
-    <td><p>$7.99</p></td>
-    <td><p>Measure TDS of plant solution</p></td>
+    <td><p>Adafruit</p></td>
+    <td><p>$1.95</p></td>
+    <td><p>$1.95</p></td>
+    <td><p>Receive signals from the remote</p></td>
   </tr>
   <tr>
-    <td><p>14</p></td>
-    <td><p>10uF Capacitor</p></td>
-    <td><p>Electrolytic Cap 100V</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$0.18</p></td>
-    <td><p>$0.36</p></td>
-    <td><p>DC Filtering for IR Receiv er</p></td>
-  </tr>
-  <tr>
-    <td><p>15</p></td>
-    <td><p><u>AA Battery (4ct</u>)</p></td>
-    <td><p>1.5 Volt, Non-rechargable</p></td>
+    <td><p>5</p></td>
+    <td><p>AWS Account</p></td>
+    <td><p>Account for cloud services</p></td>
     <td><p>1</p></td>
-    <td><p>Already had, but</p>
-      <p>available on Amazon</p></td>
-    <td><p>$3.65</p></td>
-    <td><p>$3.65</p></td>
-    <td><p>Provide Power to Motors</p></td>
+    <td><p>AWS</p></td>
+    <td><p>Free</p></td>
+    <td><p>Free</p></td>
+    <td><p>Cloud computing and storage</p></td>
   </tr>
   <tr>
-    <td><p>16</p></td>
-    <td><p>Battery Holder</p></td>
-    <td><p>2xAA (3 Volts Total)</p></td>
-    <td><p>2</p></td>
-    <td><p>Amazon</p></td>
-    <td><p>$2.50</p></td>
-    <td><p>$4.99</p></td>
-    <td><p>Provide Power to Motors</p></td>
+    <td><p>6</p></td>
+    <td><p>Wires</p></td>
+    <td><p>Various connecting wires</p></td>
+    <td><p>12-15</p></td>
+    <td><p>Various</p></td>
+    <td><p>$2 - $8</p></td>
+    <td><p>$2 - $8</p></td>
+    <td><p>Connect components together</p></td>
   </tr>
   <tr>
-    <td colspan="3">
-      <p>TOTAL PARTS</p></td>
-    <td><p>25</p></td>
-    <td colspan="2">
-      <p>TOTAL</p></td>
-    <td><p>$262.37</p></td>
-    <td></td>
+    <td><p>7</p></td>
+    <td><p>Spotify Account</p></td>
+    <td><p>Subscription to Spotify</p></td>
+    <td><p>1</p></td>
+    <td><p>Spotify</p></td>
+    <td><p>Varies</p></td>
+    <td><p>Varies</p></td>
+    <td><p>Access to Spotify services</p></td>
   </tr>
   <tr>
-    <td colspan="3">
-      <p>TOTAL PARTS (Excluding Provided)</p></td>
-    <td><p>14</p></td>
-    <td colspan="2">
-      <p>TOTAL (Exluding Provided)</p></td>
-    <td><p>$36.12</p></td>
-    <td></td>
+    <td><p>8</p></td>
+    <td><p>AWS Lambda and Step Function Costs</p></td>
+    <td><p>Free trial runs in the starter account</p></td>
+    <td><p>1</p></td>
+    <td><p>AWS</p></td>
+    <td><p>Free</p></td>
+    <td><p>Free</p></td>
+    <td><p>Run code in the cloud</p></td>
   </tr>
 </tbody>
 </table>
